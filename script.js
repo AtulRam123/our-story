@@ -250,4 +250,27 @@ window.addEventListener("load", () => {
         const daysLeft = Math.max(0, Math.floor(diff / 86400000));
         animateCount(next, daysLeft);
     }
+    /* ===============================
+   🧭 NAVBAR SHOW / HIDE ON SCROLL
+=============================== */
+
+    let lastScrollY = window.scrollY;
+
+    window.addEventListener("scroll", () => {
+        const nav = document.querySelector(".main-nav");
+        if (!nav) return;
+
+        if (window.scrollY > lastScrollY && window.scrollY > 60) {
+            // scrolling down → hide
+            nav.classList.add("nav-hidden");
+        } else {
+            // scrolling up → show
+            nav.classList.remove("nav-hidden");
+        }
+
+        lastScrollY = window.scrollY;
+    });
+
+
+
 });

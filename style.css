@@ -57,21 +57,96 @@ body::after {
    NAVIGATION
 =============================== */
 
-nav {
-    padding: 18px;
-    text-align: center;
-    backdrop-filter: blur(10px);
-    background: rgba(0, 0, 0, 0.15);
-    position: relative;
-    z-index: 3;
+/* ===============================
+   🌸 FUTURE PAGE NAVBAR
+=============================== */
+
+.main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 20;
+
+    display: flex;
+    justify-content: center;
+    gap: 26px;
+
+    padding: 16px 20px;
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+
+    transition: transform 0.35s ease, opacity 0.35s ease;
 }
 
-nav a {
-    color: white;
-    margin: 0 14px;
+/* Navbar links */
+.main-nav a {
+    position: relative;
+    color: rgba(255, 255, 255, 0.85);
     text-decoration: none;
+    font-size: 0.95rem;
     font-weight: 500;
+    letter-spacing: 0.3px;
+    padding: 6px 2px;
+    transition: color 0.3s ease;
 }
+
+/* Hover underline */
+.main-nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(90deg, #ffd6eb, #ff9acb);
+    transition: width 0.35s ease;
+}
+
+.main-nav a:hover::after {
+    width: 100%;
+}
+
+.main-nav a:hover {
+    color: #fff;
+}
+
+/* Active page */
+.main-nav a.active {
+    color: #fff;
+    font-weight: 600;
+}
+
+.main-nav a.active::after {
+    width: 100%;
+}
+
+/* ===============================
+   🧭 HIDDEN STATE (used by JS)
+=============================== */
+
+.main-nav.nav-hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ===============================
+   📱 MOBILE ADJUSTMENTS
+=============================== */
+@media (max-width: 600px) {
+    .main-nav {
+        gap: 14px;
+        padding: 14px 10px;
+        flex-wrap: wrap;
+    }
+
+    .main-nav a {
+        font-size: 0.85rem;
+    }
+}
+
 
 /* ===============================
    CONTAINER
@@ -1349,7 +1424,7 @@ p {
         font-size: 2rem;
     }
 
-    /* Romantic heart */
+    /* Romantic heart (future page) */
     .romantic-heart {
         width: 160px;
         height: 130px;
@@ -1371,21 +1446,58 @@ p {
 
     .future-editorial {
         margin: 40px auto 40px;
-        /* fixes top gap */
+        padding: 0 20px;
+        grid-template-columns: 1fr;
+        text-align: center;
     }
 
-    .future-cta {
-        margin-top: 28px;
-        /* tighter spacing */
-        justify-content: center;
+    .future-visual {
+        margin-top: 30px;
+        height: 260px;
+    }
+}
+
+/* ===============================
+   🌙 FINAL FUTURE ENDING
+   (GLOBAL — NOT inside media query)
+=============================== */
+
+.final-heart {
+    font-size: 2.4rem;
+    margin: 70px auto 20px;
+    text-align: center;
+    animation: heartRest 3.5s ease-in-out infinite;
+    position: relative;
+    z-index: 5;
+}
+
+@keyframes heartRest {
+    50% {
+        transform: scale(1.08);
+    }
+}
+
+.final-sign {
+    text-align: center;
+    font-size: 1.2rem;
+    opacity: 0.75;
+    letter-spacing: 0.3px;
+    margin-bottom: 70px;
+    position: relative;
+    z-index: 5;
+}
+
+/* ===============================
+   FINAL ENDING – MOBILE TWEAKS
+=============================== */
+@media (max-width: 600px) {
+
+    .final-heart {
+        font-size: 2rem;
+        margin-top: 45px;
     }
 
-    /* Safety for buttons */
-    .btn,
-    .time-btn,
-    .premium-btn,
-    .future-btn {
-        position: relative;
-        z-index: 10;
+    .final-sign {
+        font-size: 1.05rem;
     }
 }
