@@ -154,7 +154,7 @@ body::after {
 
 .container {
     max-width: 900px;
-    margin: 70px auto;
+    margin: 50px auto;
     padding: 45px 30px;
     background: rgba(0, 0, 0, 0.22);
     border-radius: 26px;
@@ -1487,17 +1487,106 @@ p {
     z-index: 5;
 }
 
-/* ===============================
-   FINAL ENDING – MOBILE TWEAKS
-=============================== */
-@media (max-width: 600px) {
+/* =================================================
+   📸 MEMORIES PAGE – FINAL, CLEAN, EMOTIONAL HEADER
+   ================================================= */
 
-    .final-heart {
-        font-size: 2rem;
-        margin-top: 45px;
+/* Header wrapper — grid-safe, always centered */
+.memories-header {
+    grid-column: 1 / -1;
+    justify-self: center;
+    align-self: center;
+
+    width: 100%;
+    max-width: 900px;
+
+    /* 🔥 Correct margin usage */
+    margin: 70px auto 26px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+
+/* Page spacing */
+.memories-stage,
+.memories-container {
+    padding-top: 46px !important;
+    padding-bottom: 26px !important;
+}
+
+/* ===============================
+   HERO TITLE
+=============================== */
+
+.memories-title {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 3.4rem;
+    font-weight: 600;
+    letter-spacing: 0.55px;
+    color: rgba(255, 255, 255, 0.96);
+    margin-bottom: 6px;
+
+    text-shadow:
+        0 5px 16px rgba(0, 0, 0, 0.22),
+        0 0 22px rgba(255, 190, 220, 0.32);
+}
+
+/* Camera icon — subtle accent */
+.memories-title span,
+.memories-title .icon {
+    font-size: 0.7em;
+    margin-left: 12px;
+    vertical-align: middle;
+    opacity: 0.9;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.35));
+}
+
+/* ===============================
+   SUBTITLE
+=============================== */
+
+.memories-subtitle {
+    font-family: "Libre Baskerville", serif;
+    font-size: 1.05rem;
+    font-weight: 400;
+    letter-spacing: 0.35px;
+    color: rgba(255, 255, 255, 0.78);
+    margin-bottom: 22px;
+}
+
+/* Soft visual anchor */
+.memories-subtitle::after {
+    content: "";
+    display: block;
+    width: 68px;
+    height: 1px;
+    margin: 16px auto 0;
+    background: linear-gradient(to right,
+            transparent,
+            rgba(255, 255, 255, 0.6),
+            transparent);
+    opacity: 0.75;
+}
+
+/* ===============================
+   📱 MOBILE REFINEMENT
+=============================== */
+
+@media (max-width: 600px) {
+    .memories-title {
+        font-size: 2.45rem;
     }
 
-    .final-sign {
-        font-size: 1.05rem;
+    .memories-subtitle {
+        font-size: 1.02rem;
+    }
+
+    .memories-stage,
+    .memories-container {
+        padding-top: 36px !important;
+        padding-bottom: 22px !important;
     }
 }
