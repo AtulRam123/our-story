@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Our Time ⏳</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- 💕 Floating hearts (background only) -->
+    <div class="heart-float" style="left:10%;">💗</div>
+    <div class="heart-float" style="left:40%; animation-delay:3s;">💖</div>
+    <div class="heart-float" style="left:70%; animation-delay:6s;">💞</div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="home.html" class="active">Home</a>
+    </nav>
+
+    <!-- Main content -->
+    <div class="container reveal">
+
+        <!-- Title -->
+        <h1 class="romantic-title">
+            Our Time <span>⏳</span>
+        </h1>
+
+        <!-- Since talking -->
+        <div class="time-card">
+            <p class="label">Since we started talking</p>
+            <p class="value">
+                <span id="sinceMeet"></span> days ❤️
+            </p>
+        </div>
+
+        <!-- Since proposal -->
+        <div class="time-card">
+            <p class="label">Since I chose you</p>
+            <p class="value">
+                <span id="sinceProp"></span> days 💍
+            </p>
+        </div>
+
+        <!-- Live timer section -->
+        <p class="since-label">Every moment since then 💫</p>
+        <p class="live-premium" id="live"></p>
+
+        <!-- Night-only message -->
+        <p id="nightMessage" class="night-msg"></p>
+
+        <!-- Heart with glow -->
+        <div class="heart-glow">❤️</div>
+
+        <!-- Soft divider -->
+        <div class="soft-divider"></div>
+
+        <!-- Until next meet -->
+        <div class="time-card highlight">
+            <p class="label">Until we meet again</p>
+            <p class="value" id="next"></p>
+        </div>
+
+        <!-- Progress bar -->
+        <div class="progress-wrap">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <!-- CTA -->
+        <a href="future.html" class="btn premium-btn">
+            Our Future →
+        </a>
+
+    </div>
+
+    <!-- Script -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>

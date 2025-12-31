@@ -1,0 +1,1391 @@
+/* ===============================
+   GLOBAL RESET
+=============================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* ===============================
+   BODY & BACKGROUND
+=============================== */
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.15), transparent 60%),
+        linear-gradient(180deg, #ffd6eb, #f062c2, #7b2ff7);
+    color: white;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Ambient floating dots */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: floatDots 40s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes floatDots {
+    to {
+        background-position: 0 -600px;
+    }
+}
+
+/* Soft vignette */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at center,
+            rgba(0, 0, 0, 0) 60%,
+            rgba(0, 0, 0, 0.35) 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ===============================
+   NAVIGATION
+=============================== */
+
+nav {
+    padding: 18px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.15);
+    position: relative;
+    z-index: 3;
+}
+
+nav a {
+    color: white;
+    margin: 0 14px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* ===============================
+   CONTAINER
+=============================== */
+
+.container {
+    max-width: 900px;
+    margin: 70px auto;
+    padding: 45px 30px;
+    background: rgba(0, 0, 0, 0.22);
+    border-radius: 26px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* ===============================
+   TYPOGRAPHY
+=============================== */
+
+h1 {
+    font-size: 2.2rem;
+    margin-bottom: 18px;
+}
+
+p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 14px;
+}
+
+/* ===============================
+   BUTTONS
+=============================== */
+
+.btn {
+    display: inline-block;
+    margin-top: 22px;
+    padding: 13px 36px;
+    background: white;
+    color: #6a2fd9;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn:hover {
+    transform: translateY(-4px) scale(1.03);
+}
+
+.time-btn {
+    display: inline-block;
+    margin: 30px auto 0;
+    padding: 13px 36px;
+    background: white;
+    color: #6a2fd9 !important;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+    border: none;
+    box-shadow: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.time-btn::after {
+    content: " →";
+    font-weight: 600;
+}
+
+.time-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* ===============================
+   HOME SCENE (TEDDIES)
+=============================== */
+
+.scene {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Base teddy */
+.teddy {
+    position: absolute;
+    top: 70%;
+    width: 170px;
+    opacity: 1;
+}
+
+/* Left teddy */
+.left {
+    left: -200px;
+    animation:
+        leftMove 3s ease forwards,
+        teddyFadeOut 0.4s ease forwards;
+    animation-delay: 0s, 3s;
+}
+
+/* Right teddy */
+.right {
+    right: -200px;
+    animation:
+        rightMove 3s ease forwards,
+        teddyFadeOut 0.4s ease forwards;
+    animation-delay: 0s, 3s;
+}
+
+/* Hug GIF — hidden initially */
+.gif {
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    opacity: 0;
+    /* 🔒 hidden initially */
+    pointer-events: none;
+    animation: hugReveal 0.8s ease forwards;
+    animation-delay: 3s;
+    /* AFTER touch */
+}
+
+/* ===============================
+   TEDDY ANIMATIONS
+=============================== */
+
+@keyframes leftMove {
+    to {
+        left: 50%;
+        transform: translate(-70%, -50%);
+    }
+}
+
+@keyframes rightMove {
+    to {
+        right: 50%;
+        transform: translate(70%, -50%);
+    }
+}
+
+@keyframes teddyFadeOut {
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes hugReveal {
+    to {
+        opacity: 1;
+    }
+}
+
+/* ===============================
+    MEMORIES GALLERY
+    ============================== */
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.gallery img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 18px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ===============================
+    POLAROID MEMORY ANIMATION
+============================== */
+
+/* Polaroid style */
+.gallery.polaroid {
+    position: relative;
+}
+
+.gallery.polaroid img {
+    background: white;
+    padding: 10px 10px 25px;
+    border-radius: 10px;
+    transform: rotate(var(--r));
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    animation: floatPhoto 6s ease-in-out infinite alternate;
+}
+
+/* Gentle floating */
+@keyframes floatPhoto {
+    from {
+        transform: translateY(0) rotate(var(--r));
+    }
+
+    to {
+        transform: translateY(-8px) rotate(var(--r));
+    }
+}
+
+/* Focus on tap / hover */
+.gallery.polaroid img:hover,
+.gallery.polaroid img:active {
+    transform: scale(1.08) rotate(0deg);
+    z-index: 10;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+}
+
+.gallery img:hover {
+    transform: scale(1.04);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+}
+
+.viewer {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.viewer img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 18px;
+}
+
+/* ===============================
+    TIME PAGE
+    ============================== */
+
+.live {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #ffe0f2;
+}
+
+.heart {
+    font-size: 2rem;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    50% {
+        transform: scale(1.25);
+    }
+}
+
+/* ===============================
+    ROMANTIC PREMIUM – OUR TIME PAGE
+    ============================== */
+
+.romantic-title {
+    font-size: 2.4rem;
+    margin-bottom: 35px;
+    letter-spacing: 0.6px;
+    text-shadow: 0 8px 28px rgba(255, 200, 230, 0.35);
+}
+
+.romantic-title span {
+    font-size: 1.4rem;
+    margin-left: 8px;
+}
+
+/* Soft glass cards */
+.time-card {
+    background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.22),
+            rgba(255, 255, 255, 0.08));
+    border-radius: 26px;
+    padding: 26px 22px;
+    margin: 22px auto;
+    max-width: 440px;
+    backdrop-filter: blur(10px);
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.35),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+/* Highlighted future card */
+.time-card.highlight {
+    background: linear-gradient(135deg,
+            rgba(255, 210, 235, 0.35),
+            rgba(255, 255, 255, 0.12));
+}
+
+/* Labels */
+.label {
+    font-size: 0.85rem;
+    opacity: 0.85;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+}
+
+/* Values */
+.value {
+    font-size: 2.1rem;
+    font-weight: 700;
+    margin-top: 8px;
+    text-shadow: 0 0 16px rgba(255, 190, 220, 0.55);
+}
+
+/* =================================================
+    💖 ROMANTIC + PREMIUM ADDITIONS (TIME PAGE)
+    ================================================= */
+
+/* Stable number spacing (prevents jumping) */
+.live-premium {
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin: 30px 0;
+    color: #ffe6f4;
+    text-shadow: 0 0 18px rgba(255, 160, 210, 0.75);
+    animation: softGlow 2.4s ease-in-out infinite alternate;
+    font-variant-numeric: tabular-nums;
+}
+
+@keyframes softGlow {
+    from {
+        opacity: 0.75;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Caption above live timer */
+.since-label {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    letter-spacing: 0.4px;
+    margin-bottom: 6px;
+}
+
+/* Glowing heart focus */
+.heart-glow {
+    font-size: 2.4rem;
+    margin: 18px auto;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow:
+        0 0 25px rgba(255, 120, 180, 0.6),
+        inset 0 0 15px rgba(255, 255, 255, 0.25);
+    animation: glowPulse 2.2s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+    50% {
+        transform: scale(1.08);
+        box-shadow:
+            0 0 35px rgba(255, 140, 200, 0.75),
+            inset 0 0 20px rgba(255, 255, 255, 0.35);
+    }
+}
+
+/* Heart divider */
+.heart-divider {
+    font-size: 2.6rem;
+    margin: 26px 0;
+    animation: heartBeat 1.4s infinite;
+}
+
+@keyframes heartBeat {
+    50% {
+        transform: scale(1.18);
+    }
+}
+
+/* Soft divider */
+.soft-divider {
+    width: 120px;
+    height: 1px;
+    margin: 18px auto;
+    background: linear-gradient(to right,
+            transparent,
+            rgba(255, 255, 255, 0.6),
+            transparent);
+}
+
+/* 📱 MOBILE TOUCH EFFECTS */
+.touch-heart {
+    position: fixed;
+    font-size: 24px;
+    opacity: 0.7;
+    animation: touchFloat 4s ease-out forwards;
+    pointer-events: none;
+    z-index: 100;
+    filter: drop-shadow(0 0 8px rgba(255, 150, 200, 0.8));
+    transform: translate(-50%, -50%);
+}
+
+.touch-heart.big {
+    font-size: 32px;
+    opacity: 1;
+}
+
+.touch-heart.small {
+    font-size: 18px;
+    opacity: 0.5;
+}
+
+@keyframes touchFloat {
+    0% {
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(0) rotate(360deg) translateY(-100px);
+        opacity: 0;
+    }
+}
+
+.bg-heart {
+    position: fixed;
+    bottom: -50px;
+    font-size: 20px;
+    opacity: 0.2;
+    animation: bgFloat 15s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes bgFloat {
+    to {
+        transform: translateY(-130vh) rotate(180deg);
+    }
+}
+
+/* Floating hearts */
+.heart-float {
+    position: fixed;
+    bottom: -40px;
+    font-size: 18px;
+    opacity: 0.25;
+    animation: floatUp 12s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-120vh);
+    }
+}
+
+/* Night message */
+.night-msg {
+    margin-top: 22px;
+    font-size: 1.05rem;
+    opacity: 0.85;
+    font-style: italic;
+}
+
+/* Progress bar */
+.progress-wrap {
+    width: 80%;
+    height: 6px;
+    margin: 30px auto;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #ff9acb, #ffd6eb);
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(255, 160, 210, 0.6);
+    transition: width 1s ease;
+}
+
+/* Premium button */
+.premium-btn {
+    margin-top: 40px;
+    padding: 16px 52px;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #ffffff, #ffe6f4);
+    color: #6a2fd9;
+    box-shadow: 0 22px 50px rgba(0, 0, 0, 0.45);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.premium-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 30px 65px rgba(0, 0, 0, 0.55);
+}
+
+/* ===============================
+    SCROLL REVEAL
+    ============================== */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.9s ease;
+}
+
+.reveal.show {
+    opacity: 1;
+    transform: none;
+}
+
+/* =================================================
+    ENVELOPE LETTER + WAX SEAL
+    ================================================= */
+/* ===============================
+   💌 ROMANTIC LETTER TYPOGRAPHY
+=============================== */
+
+.letter-content {
+    font-family: "Lora", serif;
+    font-size: 1.05rem;
+    line-height: 1.9;
+    letter-spacing: 0.15px;
+    color: #2b2b2b;
+}
+
+/* Paragraph spacing */
+.letter-content p {
+    margin-bottom: 18px;
+}
+
+/* Handwritten signature */
+.letter-content p:last-child {
+    font-family: "Allura", cursive;
+    font-size: 1.6rem;
+    margin-top: 26px;
+}
+
+
+.envelope-wrapper {
+    width: 100%;
+    max-width: 400px;
+    margin: 40px auto;
+    position: relative;
+    overflow: visible;
+    text-align: center;
+}
+
+.envelope {
+    position: relative;
+    width: 100%;
+    height: 260px;
+    background: linear-gradient(135deg, #f5c6e0, #f062c2);
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+    cursor: pointer;
+    transition: box-shadow 0.4s ease;
+}
+
+.envelope:hover {
+    box-shadow:
+        0 0 30px rgba(255, 150, 200, 0.6),
+        0 25px 55px rgba(0, 0, 0, 0.5);
+}
+
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background: linear-gradient(135deg, #f7b2d9, #ec4899);
+    clip-path: polygon(0 0, 100% 0, 50% 60%);
+    transform-origin: top;
+    transition: transform 1.2s ease;
+    z-index: 3;
+}
+
+.wax-seal {
+    position: absolute;
+    top: 28%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 64px;
+    height: 64px;
+    background:
+        radial-gradient(circle at 25% 25%,
+            #d13434 0%,
+            #9f1d1d 35%,
+            #6d0f0f 65%,
+            #4a0505 100%);
+    border-radius: 50%;
+    box-shadow:
+        inset -6px -6px 10px rgba(0, 0, 0, 0.45),
+        inset 4px 4px 8px rgba(255, 255, 255, 0.25),
+        0 14px 28px rgba(0, 0, 0, 0.55);
+    z-index: 6;
+    cursor: pointer;
+    transition: transform 0.5s ease, opacity 0.4s ease;
+}
+
+.wax-seal::before {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    background:
+        radial-gradient(circle at 30% 30%,
+            #8b1a1a,
+            #4a0505 70%);
+    border-radius: 60% 40% 55% 45% / 55% 60% 40% 45%;
+    filter: blur(2px);
+    z-index: -1;
+}
+
+.wax-seal::after {
+    content: "";
+    position: absolute;
+    inset: 15px;
+    border-radius: 50%;
+    box-shadow:
+        inset 0 0 0 2px rgba(255, 255, 255, 0.18),
+        inset 0 3px 8px rgba(0, 0, 0, 0.55);
+    opacity: 0.9;
+}
+
+.wax-seal span {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 7px;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: 0.3px;
+    color: rgba(255, 255, 255, 0.35);
+    text-transform: uppercase;
+    text-shadow:
+        0 1px 1px rgba(0, 0, 0, 0.6),
+        inset 0 -1px 1px rgba(255, 255, 255, 0.3);
+    pointer-events: none;
+}
+
+.wax-seal:hover {
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+.envelope.open .wax-seal {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.6);
+}
+
+.letter {
+    position: absolute;
+    left: -20px;
+    right: -20px;
+    top: 60px;
+    height: 320px;
+    background:
+        linear-gradient(180deg, #fffdf8, #f7f3ec),
+        repeating-linear-gradient(0deg,
+            rgba(0, 0, 0, 0.015),
+            rgba(0, 0, 0, 0.015) 1px,
+            transparent 1px,
+            transparent 3px);
+    border-radius: 12px;
+    transform: translateY(120px);
+    opacity: 0;
+    transition: transform 1.2s ease, opacity 1s ease;
+    z-index: 4;
+    overflow-y: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.letter-content {
+    padding: 28px 22px 30px;
+    color: #333;
+    text-align: center;
+}
+
+.letter-content p {
+    color: #333;
+}
+
+.envelope.open .envelope-flap {
+    transform: rotateX(180deg);
+}
+
+.envelope.open .letter {
+    transform: translateY(-80px);
+    opacity: 1;
+}
+
+/* ===============================
+    FIREWORKS CANVAS
+    ============================== */
+
+#fireworks {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* =================================================
+    🔮 FUTURE PAGE – ROMANTIC + PREMIUM
+    ================================================= */
+
+.future-container {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+/* Title */
+.future-title {
+    font-size: 2.4rem;
+    margin-bottom: 40px;
+    text-shadow: 0 12px 35px rgba(255, 200, 230, 0.4);
+}
+
+/* Crystal orb */
+.orb {
+    display: inline-block;
+    margin-left: 10px;
+    animation: orbFloat 3s ease-in-out infinite;
+}
+
+@keyframes orbFloat {
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+/* Lines */
+.future-line {
+    font-size: 1.2rem;
+    margin: 18px 0;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: lineReveal 1s ease forwards;
+}
+
+.future-line.delay-1 {
+    animation-delay: 0.3s;
+}
+
+.future-line.delay-2 {
+    animation-delay: 0.8s;
+}
+
+.future-line.delay-3 {
+    animation-delay: 1.3s;
+}
+
+@keyframes lineReveal {
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Emphasis */
+.future-line.emphasis {
+    font-size: 1.45rem;
+    font-weight: 600;
+    position: relative;
+}
+
+.future-line.emphasis::after {
+    content: "";
+    display: block;
+    width: 120px;
+    height: 2px;
+    margin: 10px auto 0;
+    background: linear-gradient(to right,
+            transparent,
+            rgba(255, 255, 255, 0.7),
+            transparent);
+}
+
+/* Heart focal point */
+.future-heart {
+    font-size: 2.6rem;
+    margin: 35px auto;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow:
+        0 0 30px rgba(255, 120, 180, 0.6),
+        inset 0 0 20px rgba(255, 255, 255, 0.25);
+    animation: heartFuture 2s ease-in-out infinite;
+}
+
+@keyframes heartFuture {
+    50% {
+        transform: scale(1.1);
+        box-shadow:
+            0 0 45px rgba(255, 140, 200, 0.8),
+            inset 0 0 25px rgba(255, 255, 255, 0.35);
+    }
+}
+
+/* Button */
+.future-btn {
+    margin-top: 45px;
+    padding: 16px 54px;
+    font-size: 1.1rem;
+    box-shadow: 0 22px 50px rgba(0, 0, 0, 0.45);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.future-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 32px 70px rgba(0, 0, 0, 0.55);
+}
+
+/* ===============================
+    FUTURE EDITORIAL STAGE
+    ============================== */
+
+.future-stage {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.future-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, #f3a5c9, #9c3ccf, #5b2fcf);
+    z-index: 0;
+}
+
+.future-grain {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 3px 3px;
+    opacity: 0.25;
+    z-index: 1;
+}
+
+.future-editorial {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px;
+    max-width: 1100px;
+    margin: 60px auto 50px;
+    padding: 0 40px;
+    align-items: center;
+}
+
+.future-text h1 {
+    font-family: "Lora", serif;
+    letter-spacing: 0.3px;
+}
+
+.future-text p {
+    font-family: "Lora", serif;
+    font-size: 1.15rem;
+    line-height: 1.85;
+}
+
+.future-text .line.delay-1 {
+    animation-delay: 0.4s;
+}
+
+.future-text .line.delay-2 {
+    animation-delay: 0.8s;
+}
+
+.future-text .line.delay-3 {
+    animation-delay: 1.4s;
+}
+
+.future-text .line.delay-4 {
+    animation-delay: 2.2s;
+}
+
+.future-text .line.delay-5 {
+    animation-delay: 3s;
+}
+
+.future-text .line.delay-6 {
+    animation-delay: 3.4s;
+}
+
+.future-text .line.delay-7 {
+    animation-delay: 4.2s;
+}
+
+.future-text .line {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: textReveal 1s ease forwards;
+}
+
+.future-text .emphasis {
+    margin-bottom: 12px;
+}
+
+.spacer {
+    height: 18px;
+}
+
+@keyframes textReveal {
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.future-visual {
+    position: relative;
+    height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.heart-orb {
+    font-size: 3rem;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: orbPulse 2.5s ease-in-out infinite;
+    z-index: 2;
+}
+
+.soft-glow {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 180, 220, 0.35);
+    filter: blur(60px);
+    border-radius: 50%;
+    animation: glowFloat 6s ease-in-out infinite alternate;
+}
+
+@keyframes orbPulse {
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+@keyframes glowFloat {
+    to {
+        transform: translateY(-20px);
+    }
+}
+
+.future-cta {
+    grid-column: 1 / -1;
+    /* span full grid */
+    margin-top: 18px;
+    display: flex;
+    justify-content: center;
+    /* ← RIGHT aligned */
+    padding-right: 40px;
+    /* aligns with text nicely */
+}
+
+
+/* ===============================
+    ❤️ PREMIUM ROMANTIC HEART MERGE - ENHANCED
+    ============================== */
+
+.romantic-heart {
+    position: relative;
+    width: 200px;
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: floatLove 8s ease-in-out infinite;
+    margin: 30px auto;
+}
+
+@keyframes floatLove {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-12px) rotate(2deg);
+    }
+}
+
+.romantic-heart .heart {
+    position: absolute;
+    font-size: 2.6rem;
+    opacity: 0;
+    will-change: transform, opacity;
+    filter: drop-shadow(0 0 12px rgba(255, 120, 180, 0.6));
+    transition: filter 0.3s ease;
+}
+
+/* LEFT HEART - Enhanced motion */
+.romantic-heart .heart.left {
+    left: -8px;
+    animation: leftHeart 8s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+}
+
+@keyframes leftHeart {
+    0% {
+        opacity: 0;
+        transform: translateX(0) translateY(8px) scale(0.85) rotate(-10deg);
+    }
+
+    12% {
+        opacity: 1;
+    }
+
+    40% {
+        transform: translateX(56px) translateY(-4px) scale(1.05) rotate(5deg);
+    }
+
+    50% {
+        transform: translateX(56px) translateY(-6px) scale(1.08) rotate(3deg);
+    }
+
+    55% {
+        opacity: 0.8;
+    }
+
+    62% {
+        opacity: 0;
+    }
+}
+
+/* RIGHT HEART - Enhanced motion */
+.romantic-heart .heart.right {
+    right: -8px;
+    animation: rightHeart 8s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+}
+
+@keyframes rightHeart {
+    0% {
+        opacity: 0;
+        transform: translateX(0) translateY(8px) scale(0.85) rotate(10deg);
+    }
+
+    12% {
+        opacity: 1;
+    }
+
+    40% {
+        transform: translateX(-56px) translateY(-4px) scale(1.05) rotate(-5deg);
+    }
+
+    50% {
+        transform: translateX(-56px) translateY(-6px) scale(1.08) rotate(-3deg);
+    }
+
+    55% {
+        opacity: 0.8;
+    }
+
+    62% {
+        opacity: 0;
+    }
+}
+
+/* MERGED HEART - Premium glow effect */
+.romantic-heart .heart.merged {
+    font-size: 3.4rem;
+    z-index: 2;
+    animation: mergedHeart 8s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+}
+
+@keyframes mergedHeart {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) rotate(0deg);
+    }
+
+    52% {
+        opacity: 0;
+    }
+
+    58% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+
+    70% {
+        transform: scale(1.18) rotate(1deg);
+        filter: drop-shadow(0 0 35px rgba(255, 120, 180, 1));
+    }
+
+    85% {
+        transform: scale(1.05) rotate(-1deg);
+        filter: drop-shadow(0 0 25px rgba(255, 120, 180, 0.8));
+    }
+
+    100% {
+        transform: scale(1) rotate(0deg);
+        filter: drop-shadow(0 0 18px rgba(255, 120, 180, 0.7));
+    }
+}
+
+/* ✨ Premium sparkle trail effect */
+.romantic-heart::before {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, transparent 70%);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    animation: sparkle 8s linear infinite;
+    z-index: 3;
+}
+
+@keyframes sparkle {
+
+    0%,
+    55% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    58% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    65% {
+        opacity: 0.7;
+        transform: scale(1.3) translateY(-10px);
+    }
+
+    70% {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+/* 💖 Heart glow aura */
+.romantic-heart::after {
+    content: '';
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle,
+            rgba(255, 150, 200, 0.4) 0%,
+            rgba(255, 120, 180, 0.2) 40%,
+            transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    opacity: 0;
+    animation: heartAura 8s ease-in-out infinite;
+    z-index: 1;
+}
+
+@keyframes heartAura {
+
+    0%,
+    55% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    75% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1.4);
+    }
+
+    90% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.6);
+    }
+}
+
+/* ===============================
+    MOBILE ADJUSTMENTS
+    ============================== */
+
+/* ===============================
+   MOBILE ≤ 600px
+=============================== */
+@media (max-width: 600px) {
+
+    .container {
+        margin: 40px 15px;
+        padding: 35px 20px;
+    }
+
+    h1 {
+        font-size: 1.9rem;
+    }
+
+    .envelope {
+        height: 240px;
+    }
+
+    .letter {
+        top: 55px;
+        height: 280px;
+    }
+
+    .time-btn {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+
+    .wax-seal {
+        width: 48px;
+        height: 48px;
+        top: 30%;
+    }
+
+    .romantic-title {
+        font-size: 2rem;
+    }
+
+    .romantic-title span {
+        font-size: 1.2rem;
+    }
+
+    .time-card {
+        padding: 22px 18px;
+        margin: 18px auto;
+        max-width: 360px;
+    }
+
+    .value {
+        font-size: 1.8rem;
+    }
+
+    .premium-btn {
+        padding: 14px 40px;
+        font-size: 1rem;
+    }
+
+    .progress-wrap {
+        width: 90%;
+    }
+
+    .heart-glow {
+        width: 50px;
+        height: 50px;
+        font-size: 2rem;
+    }
+
+    /* Romantic heart */
+    .romantic-heart {
+        width: 160px;
+        height: 130px;
+    }
+
+    .romantic-heart .heart {
+        font-size: 2.2rem;
+    }
+
+    .romantic-heart .heart.merged {
+        font-size: 2.9rem;
+    }
+}
+
+/* ===============================
+   TABLET & MOBILE ≤ 768px
+=============================== */
+@media (max-width: 768px) {
+
+    .future-editorial {
+        margin: 40px auto 40px;
+        /* fixes top gap */
+    }
+
+    .future-cta {
+        margin-top: 28px;
+        /* tighter spacing */
+        justify-content: center;
+    }
+
+    /* Safety for buttons */
+    .btn,
+    .time-btn,
+    .premium-btn,
+    .future-btn {
+        position: relative;
+        z-index: 10;
+    }
+}
