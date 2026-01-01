@@ -1,3 +1,6 @@
+/* ===============================
+GLOBAL RESET
+=============================== */
 * {
     margin: 0;
     padding: 0;
@@ -5,6 +8,9 @@
     font-family: "Poppins", sans-serif;
 }
 
+/* ===============================
+BODY
+=============================== */
 body {
     height: 100vh;
     overflow: hidden;
@@ -17,7 +23,9 @@ canvas {
     inset: 0;
 }
 
-/* Scene */
+/* ===============================
+SCENE
+=============================== */
 .scene {
     position: relative;
     height: 100vh;
@@ -25,7 +33,9 @@ canvas {
     z-index: 1;
 }
 
-/* Gravity field */
+/* ===============================
+GRAVITY FIELD
+=============================== */
 .gravity-field {
     position: absolute;
     top: 50%;
@@ -56,7 +66,9 @@ canvas {
     }
 }
 
-/* Orbs */
+/* ===============================
+ORBS
+=============================== */
 .orb {
     position: absolute;
     top: 50%;
@@ -98,7 +110,63 @@ canvas {
     }
 }
 
-/* Text */
+/* ===============================
+NAME
+=============================== */
+.name-reveal {
+    position: absolute;
+    top: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    opacity: 0;
+    transition: opacity 3s ease;
+    z-index: 10;
+}
+
+.name-reveal span {
+    display: block;
+    margin-top: 6px;
+    font-family: "Dancing Script", cursive;
+    font-size: 2.6rem;
+    text-shadow: 0 0 35px rgba(210, 160, 255, 1);
+}
+
+/* ===============================
+🎆 HAPPY NEW YEAR
+=============================== */
+.newyear-section {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    cursor: pointer;
+    z-index: 12;
+}
+
+.newyear-text {
+    font-family: "Great Vibes", cursive;
+    font-size: 3.8rem;
+    color: #ffd6ff;
+    letter-spacing: 1px;
+    text-shadow:
+        0 0 30px rgba(255, 200, 255, .95),
+        0 0 90px rgba(200, 120, 255, .9);
+}
+
+
+.tap-hint {
+    margin-top: 6px;
+    font-size: .75rem;
+    letter-spacing: 3px;
+    opacity: .65;
+    text-transform: uppercase;
+}
+
+/* ===============================
+TEXT BLOCK
+=============================== */
 .text-block {
     position: absolute;
     bottom: 22%;
@@ -128,7 +196,6 @@ canvas {
     margin-top: 8px;
     font-family: "Playfair Display", serif;
     font-size: 2.6rem;
-    line-height: 1.2;
     text-shadow: 0 0 40px rgba(200, 140, 255, .9);
 }
 
@@ -141,7 +208,9 @@ canvas {
     animation-delay: 11s;
 }
 
-/* CTA */
+/* ===============================
+CTA
+=============================== */
 .cta {
     position: absolute;
     bottom: 10%;
@@ -153,23 +222,9 @@ canvas {
     color: white;
     text-decoration: none;
     font-size: 1.1rem;
-    letter-spacing: 1px;
     opacity: 0;
-    animation: ctaReveal 2s ease forwards;
+    animation: textReveal 2s ease forwards;
     animation-delay: 8s;
-    z-index: 10;
-}
-
-@keyframes ctaReveal {
-    from {
-        opacity: 0;
-        transform: translateX(-50%) scale(.85);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(-50%) scale(1);
-    }
 }
 
 .cta:hover {
@@ -177,25 +232,13 @@ canvas {
     transform: translateX(-50%) translateY(-4px);
 }
 
-/* Name Reveal */
-.name-reveal {
-    position: absolute;
-    top: 12%;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 1.1rem;
-    letter-spacing: 2px;
-    opacity: 0;
-    text-align: center;
-    transition: opacity 3s ease;
+/* ===============================
+FIREWORKS
+=============================== */
+#fireworks {
+    position: fixed;
+    inset: 0;
     pointer-events: none;
-    z-index: 10;
-}
-
-.name-reveal span {
-    display: block;
-    margin-top: 6px;
-    font-family: "Dancing Script", cursive;
-    font-size: 2.6rem;
-    text-shadow: 0 0 35px rgba(210, 160, 255, 1);
+    z-index: 999;
+    display: none;
 }
