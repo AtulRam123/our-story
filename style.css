@@ -671,28 +671,109 @@ p {
 /* =================================================
     ENVELOPE LETTER + WAX SEAL
     ================================================= */
+
+/* ===============================
+   💌 LETTER HEADER – PREMIUM
+=============================== */
+
+.letter-header {
+    margin-bottom: 35px;
+    text-align: center;
+    position: relative;
+}
+
+/* Title */
+.letter-title {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 2.6rem;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    color: rgba(255, 255, 255, 0.96);
+    margin-bottom: 14px;
+
+    text-shadow:
+        0 6px 18px rgba(0, 0, 0, 0.25),
+        0 0 28px rgba(255, 190, 220, 0.35);
+}
+
+/* Emoji accent */
+.letter-title span {
+    font-size: 0.8em;
+    margin-left: 10px;
+    vertical-align: middle;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.35));
+}
+
+/* Subtitle */
+.letter-hint {
+    font-family: "Libre Baskerville", serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.35px;
+    color: rgba(255, 255, 255, 0.78);
+    opacity: 0.9;
+}
+
+/* Soft divider below subtitle */
+.letter-hint::after {
+    content: "";
+    display: block;
+    width: 70px;
+    height: 1px;
+    margin: 18px auto 0;
+    background: linear-gradient(to right,
+            transparent,
+            rgba(255, 255, 255, 0.6),
+            transparent);
+}
+
 /* ===============================
    💌 ROMANTIC LETTER TYPOGRAPHY
 =============================== */
-
 .letter-content {
     font-family: "Lora", serif;
-    font-size: 1.05rem;
-    line-height: 1.9;
-    letter-spacing: 0.15px;
+    font-size: 1.08rem;
+    /* slightly more readable */
+    line-height: 1.95;
+    /* calmer, letter-like pace */
+    letter-spacing: 0.2px;
     color: #2b2b2b;
+    text-align: center;
+    /* letter feels intentional */
+    padding: 28px 22px;
 }
 
 /* Paragraph spacing */
 .letter-content p {
-    margin-bottom: 18px;
+    margin-bottom: 22px;
 }
 
-/* Handwritten signature */
+/* First paragraph – emotional emphasis */
+.letter-content p:first-child {
+    font-size: 1.12rem;
+    color: #3a2a2a;
+}
+
+/* Handwritten signature (last line) */
 .letter-content p:last-child {
     font-family: "Allura", cursive;
-    font-size: 1.6rem;
-    margin-top: 26px;
+    font-size: 1.75rem;
+    margin-top: 30px;
+    color: #5a2a2a;
+    letter-spacing: 0.6px;
+}
+
+.letter-content::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        repeating-linear-gradient(0deg,
+            rgba(0, 0, 0, 0.015),
+            rgba(0, 0, 0, 0.015) 1px,
+            transparent 1px,
+            transparent 4px);
+    pointer-events: none;
+    border-radius: 12px;
 }
 
 
@@ -1575,18 +1656,29 @@ p {
    📱 MOBILE REFINEMENT
 =============================== */
 
+/* ===============================
+   📱 MOBILE ≤ 600px – LETTER PAGE
+=============================== */
 @media (max-width: 600px) {
-    .memories-title {
-        font-size: 2.45rem;
+
+    /* Title */
+    .letter-title {
+        font-size: 2.05rem;
     }
 
-    .memories-subtitle {
+    /* Subtitle */
+    .letter-hint {
+        font-size: 0.98rem;
+    }
+
+    /* Letter body */
+    .letter-content {
         font-size: 1.02rem;
+        padding: 26px 20px 28px;
     }
 
-    .memories-stage,
-    .memories-container {
-        padding-top: 36px !important;
-        padding-bottom: 22px !important;
+    /* Opening handwritten line */
+    .letter-opening {
+        font-size: 1.65rem;
     }
 }
